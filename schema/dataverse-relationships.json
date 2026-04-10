@@ -1,0 +1,114 @@
+{
+  "publisherPrefix": "kzn",
+  "relationships": [
+    {
+      "schemaName": "kzn_kzn_skillsauditcycle_kzn_skillsauditsubmission",
+      "referencedTableLogicalName": "kzn_skillsauditcycle",
+      "referencingTableLogicalName": "kzn_skillsauditsubmission",
+      "lookupColumnLogicalName": "kzn_cycleid",
+      "lookupDisplayName": "Skills Audit Cycle",
+      "description": "Links each submission to the active skills audit cycle.",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "schemaName": "kzn_kzn_employeeprofile_kzn_skillsauditsubmission",
+      "referencedTableLogicalName": "kzn_employeeprofile",
+      "referencingTableLogicalName": "kzn_skillsauditsubmission",
+      "lookupColumnLogicalName": "kzn_employeeprofileid",
+      "lookupDisplayName": "Employee Profile",
+      "description": "Links each submission to the identified employee record.",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "schemaName": "kzn_kzn_skillsauditsubmission_kzn_educationrecord",
+      "referencedTableLogicalName": "kzn_skillsauditsubmission",
+      "referencingTableLogicalName": "kzn_educationrecord",
+      "lookupColumnLogicalName": "kzn_submissionid",
+      "lookupDisplayName": "Submission",
+      "description": "Links education records to a questionnaire submission.",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "schemaName": "kzn_kzn_skillsauditsubmission_kzn_workexperiencerecord",
+      "referencedTableLogicalName": "kzn_skillsauditsubmission",
+      "referencingTableLogicalName": "kzn_workexperiencerecord",
+      "lookupColumnLogicalName": "kzn_submissionid",
+      "lookupDisplayName": "Submission",
+      "description": "Links work experience records to a questionnaire submission.",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "schemaName": "kzn_kzn_skillsauditsubmission_kzn_auditlog",
+      "referencedTableLogicalName": "kzn_skillsauditsubmission",
+      "referencingTableLogicalName": "kzn_auditlog",
+      "lookupColumnLogicalName": "kzn_submissionid",
+      "lookupDisplayName": "Submission",
+      "description": "Links each audit log entry to a questionnaire submission.",
+      "requiredLevel": "None"
+    }
+  ],
+  "securityRoleModel": {
+    "applicationRoles": [
+      {
+        "displayName": "Respondent",
+        "value": "SkillsAudit.Respondent",
+        "description": "Complete and submit the skills audit questionnaire."
+      },
+      {
+        "displayName": "HR / Business Administrator",
+        "value": "SkillsAudit.HRAdmin",
+        "description": "Manage cycles, employee loads, reopen actions and operational reporting."
+      },
+      {
+        "displayName": "System Administrator",
+        "value": "SkillsAudit.SystemAdmin",
+        "description": "Administer environment settings, reference data, security and platform configuration."
+      },
+      {
+        "displayName": "Reporting User",
+        "value": "SkillsAudit.ReportingUser",
+        "description": "Read-only dashboard and export access."
+      }
+    ],
+    "dataverseSecurityRoles": [
+      {
+        "name": "KZN Skills Audit Respondent",
+        "tables": {
+          "kzn_skillsauditsubmission": "create, read, append, appendto, write-own",
+          "kzn_educationrecord": "create, read, append, appendto, write-own",
+          "kzn_workexperiencerecord": "create, read, append, appendto, write-own",
+          "kzn_employeeprofile": "read-own or business-unit",
+          "kzn_skillsauditcycle": "read"
+        }
+      },
+      {
+        "name": "KZN Skills Audit HR Admin",
+        "tables": {
+          "kzn_skillsauditcycle": "create, read, write, append, appendto",
+          "kzn_employeeprofile": "create, read, write, append, appendto",
+          "kzn_skillsauditsubmission": "read, write, append, appendto, assign",
+          "kzn_educationrecord": "read, write, append, appendto",
+          "kzn_workexperiencerecord": "read, write, append, appendto",
+          "kzn_auditlog": "read, create"
+        }
+      },
+      {
+        "name": "KZN Skills Audit System Admin",
+        "tables": {
+          "*": "full organisation-level administration"
+        }
+      },
+      {
+        "name": "KZN Skills Audit Reporting User",
+        "tables": {
+          "kzn_skillsauditcycle": "read",
+          "kzn_employeeprofile": "read",
+          "kzn_skillsauditsubmission": "read",
+          "kzn_educationrecord": "read",
+          "kzn_workexperiencerecord": "read",
+          "kzn_auditlog": "read-limited"
+        }
+      }
+    ]
+  }
+}

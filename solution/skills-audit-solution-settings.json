@@ -1,0 +1,38 @@
+{
+  "publisher": {
+    "uniqueName": "crb",
+    "friendlyName": "KZN Department of Transport",
+    "description": "Publisher for the Skills Audit solution assets.",
+    "prefix": "crb",
+    "optionValuePrefix": 10000
+  },
+  "solution": {
+    "uniqueName": "KZNSkillsAudit",
+    "friendlyName": "KZN Skills Audit",
+    "version": "1.0.0.0",
+    "description": "Managed or unmanaged Dataverse solution for the Skills Audit platform."
+  },
+  "components": {
+    "tables": [
+      "crb_skillsauditcycle",
+      "crb_employeeprofile",
+      "crb_skillsauditsubmission",
+      "crb_personalparticulars",
+      "crb_educationrecord",
+      "crb_workexperiencerecord",
+      "crb_trainingrecord",
+      "crb_professionalregistration",
+      "crb_competencyandcareerdetail",
+      "crb_auditlog",
+      "crb_referencevalue"
+    ],
+    "globalChoices": [
+      "crb_SubmissionStatus",
+      "crb_EmploymentType",
+      "crb_IDType",
+      "crb_YesNoResponse",
+      "crb_AgeCategory",
+      "crb_FieldOfStudy"
+    ]
+  }
+}

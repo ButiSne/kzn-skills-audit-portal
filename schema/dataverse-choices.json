@@ -1,0 +1,74 @@
+{
+  "globalChoices": [
+    {
+      "schemaName": "crb_SubmissionStatus",
+      "displayName": "Submission Status",
+      "description": "Lifecycle of a questionnaire submission.",
+      "options": [
+        { "value": 100000000, "label": "Draft" },
+        { "value": 100000001, "label": "Submitted" },
+        { "value": 100000002, "label": "Reopened" },
+        { "value": 100000003, "label": "Closed" }
+      ]
+    },
+    {
+      "schemaName": "crb_EmploymentType",
+      "displayName": "Employment Type",
+      "description": "Employment category captured in the questionnaire.",
+      "options": [
+        { "value": 100000000, "label": "Permanent" },
+        { "value": 100000001, "label": "Contract" },
+        { "value": 100000002, "label": "Other" }
+      ]
+    },
+    {
+      "schemaName": "crb_IDType",
+      "displayName": "ID Type",
+      "description": "Accepted identity document type.",
+      "options": [
+        { "value": 100000000, "label": "South African ID" },
+        { "value": 100000001, "label": "Passport" }
+      ]
+    },
+    {
+      "schemaName": "crb_YesNoResponse",
+      "displayName": "Yes No Response",
+      "description": "Reusable binary response set.",
+      "options": [
+        { "value": 100000000, "label": "Yes" },
+        { "value": 100000001, "label": "No" }
+      ]
+    },
+    {
+      "schemaName": "crb_AgeCategory",
+      "displayName": "Age Category",
+      "description": "Age band used for reporting.",
+      "options": [
+        { "value": 100000000, "label": "Below 35" },
+        { "value": 100000001, "label": "35 - 44" },
+        { "value": 100000002, "label": "45 - 54" },
+        { "value": 100000003, "label": "55 - 60" },
+        { "value": 100000004, "label": "61 - 65" }
+      ]
+    },
+    {
+      "schemaName": "crb_FieldOfStudy",
+      "displayName": "Field of Study",
+      "description": "Standard field of study classification.",
+      "options": [
+        { "value": 100000000, "label": "Agricultural and Environmental Sciences" },
+        { "value": 100000001, "label": "Arts and Creative Studies" },
+        { "value": 100000002, "label": "Business, Economics, and Management Sciences" },
+        { "value": 100000003, "label": "Education" },
+        { "value": 100000004, "label": "Engineering" },
+        { "value": 100000005, "label": "Humanities / Social Sciences" },
+        { "value": 100000006, "label": "Information Technology" },
+        { "value": 100000007, "label": "Interdisciplinary Studies" },
+        { "value": 100000008, "label": "Law" },
+        { "value": 100000009, "label": "Medicine and Health Sciences" },
+        { "value": 100000010, "label": "Natural Sciences" },
+        { "value": 100000011, "label": "Other" }
+      ]
+    }
+  ]
+}

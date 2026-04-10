@@ -1,0 +1,96 @@
+{
+  "publisherPrefix": "kzndot",
+  "solutionName": "KznSkillsAudit",
+  "tables": [
+    {
+      "logicalName": "kzndot_skillsauditcycle",
+      "schemaName": "kzndot_SkillsAuditCycle",
+      "displayName": "Skills Audit Cycle",
+      "pluralName": "Skills Audit Cycles",
+      "primaryName": "Cycle Name",
+      "columns": [
+        { "logicalName": "kzndot_cycleyear", "schemaName": "kzndot_CycleYear", "displayName": "Cycle Year", "type": "Integer" },
+        { "logicalName": "kzndot_startdate", "schemaName": "kzndot_StartDate", "displayName": "Start Date", "type": "DateTime" },
+        { "logicalName": "kzndot_enddate", "schemaName": "kzndot_EndDate", "displayName": "End Date", "type": "DateTime" },
+        { "logicalName": "kzndot_status", "schemaName": "kzndot_Status", "displayName": "Status", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_instructions", "schemaName": "kzndot_Instructions", "displayName": "Instructions", "type": "Memo", "maxLength": 4000 }
+      ]
+    },
+    {
+      "logicalName": "kzndot_employeeprofile",
+      "schemaName": "kzndot_EmployeeProfile",
+      "displayName": "Employee Profile",
+      "pluralName": "Employee Profiles",
+      "primaryName": "Employee Name",
+      "columns": [
+        { "logicalName": "kzndot_persalnumber", "schemaName": "kzndot_PersalNumber", "displayName": "PERSAL Number", "type": "String", "maxLength": 50 },
+        { "logicalName": "kzndot_idtype", "schemaName": "kzndot_IdType", "displayName": "ID Type", "type": "String", "maxLength": 50 },
+        { "logicalName": "kzndot_idnumber", "schemaName": "kzndot_IdNumber", "displayName": "ID or Passport Number", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_department", "schemaName": "kzndot_Department", "displayName": "Department", "type": "String", "maxLength": 150 },
+        { "logicalName": "kzndot_branch", "schemaName": "kzndot_Branch", "displayName": "Branch", "type": "String", "maxLength": 150 },
+        { "logicalName": "kzndot_salarylevel", "schemaName": "kzndot_SalaryLevel", "displayName": "Salary Level", "type": "String", "maxLength": 20 },
+        { "logicalName": "kzndot_employmenttype", "schemaName": "kzndot_EmploymentType", "displayName": "Employment Type", "type": "String", "maxLength": 50 }
+      ]
+    },
+    {
+      "logicalName": "kzndot_skillsauditsubmission",
+      "schemaName": "kzndot_SkillsAuditSubmission",
+      "displayName": "Skills Audit Submission",
+      "pluralName": "Skills Audit Submissions",
+      "primaryName": "Submission Reference Number",
+      "columns": [
+        { "logicalName": "kzndot_cycleidtext", "schemaName": "kzndot_CycleIdText", "displayName": "Cycle Reference", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_employeeidtext", "schemaName": "kzndot_EmployeeIdText", "displayName": "Employee Reference", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_submissionstatus", "schemaName": "kzndot_SubmissionStatus", "displayName": "Submission Status", "type": "String", "maxLength": 50 },
+        { "logicalName": "kzndot_startedon", "schemaName": "kzndot_StartedOn", "displayName": "Started On", "type": "DateTime" },
+        { "logicalName": "kzndot_submittedon", "schemaName": "kzndot_SubmittedOn", "displayName": "Submitted On", "type": "DateTime" },
+        { "logicalName": "kzndot_declarationaccepted", "schemaName": "kzndot_DeclarationAccepted", "displayName": "Declaration Accepted", "type": "Boolean" },
+        { "logicalName": "kzndot_additionalinformation", "schemaName": "kzndot_AdditionalInformation", "displayName": "Additional Information", "type": "Memo", "maxLength": 4000 }
+      ]
+    },
+    {
+      "logicalName": "kzndot_educationrecord",
+      "schemaName": "kzndot_EducationRecord",
+      "displayName": "Education Record",
+      "pluralName": "Education Records",
+      "primaryName": "Qualification Name",
+      "columns": [
+        { "logicalName": "kzndot_submissionidtext", "schemaName": "kzndot_SubmissionIdText", "displayName": "Submission Reference", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_educationsequence", "schemaName": "kzndot_EducationSequence", "displayName": "Education Sequence", "type": "Integer" },
+        { "logicalName": "kzndot_ishighestqualification", "schemaName": "kzndot_IsHighestQualification", "displayName": "Is Highest Qualification", "type": "Boolean" },
+        { "logicalName": "kzndot_institution", "schemaName": "kzndot_Institution", "displayName": "Institution", "type": "String", "maxLength": 250 },
+        { "logicalName": "kzndot_yearobtained", "schemaName": "kzndot_YearObtained", "displayName": "Year Obtained", "type": "Integer" },
+        { "logicalName": "kzndot_fieldofstudy", "schemaName": "kzndot_FieldOfStudy", "displayName": "Field of Study", "type": "String", "maxLength": 150 }
+      ]
+    },
+    {
+      "logicalName": "kzndot_workexperiencerecord",
+      "schemaName": "kzndot_WorkExperienceRecord",
+      "displayName": "Work Experience Record",
+      "pluralName": "Work Experience Records",
+      "primaryName": "Employer",
+      "columns": [
+        { "logicalName": "kzndot_submissionidtext", "schemaName": "kzndot_SubmissionIdText", "displayName": "Submission Reference", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_experiencesequence", "schemaName": "kzndot_ExperienceSequence", "displayName": "Experience Sequence", "type": "Integer" },
+        { "logicalName": "kzndot_jobtitle", "schemaName": "kzndot_JobTitle", "displayName": "Job Title", "type": "String", "maxLength": 150 },
+        { "logicalName": "kzndot_periodinyears", "schemaName": "kzndot_PeriodInYears", "displayName": "Period In Years", "type": "String", "maxLength": 100 }
+      ]
+    },
+    {
+      "logicalName": "kzndot_auditlog",
+      "schemaName": "kzndot_AuditLog",
+      "displayName": "Audit Log",
+      "pluralName": "Audit Logs",
+      "primaryName": "Action Performed",
+      "columns": [
+        { "logicalName": "kzndot_submissionidtext", "schemaName": "kzndot_SubmissionIdText", "displayName": "Submission Reference", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_userprincipalname", "schemaName": "kzndot_UserPrincipalName", "displayName": "User Principal Name", "type": "String", "maxLength": 250 },
+        { "logicalName": "kzndot_role", "schemaName": "kzndot_Role", "displayName": "Role", "type": "String", "maxLength": 100 },
+        { "logicalName": "kzndot_actiondatetime", "schemaName": "kzndot_ActionDateTime", "displayName": "Action Date Time", "type": "DateTime" },
+        { "logicalName": "kzndot_recordaffected", "schemaName": "kzndot_RecordAffected", "displayName": "Record Affected", "type": "String", "maxLength": 150 },
+        { "logicalName": "kzndot_oldvaluesnapshot", "schemaName": "kzndot_OldValueSnapshot", "displayName": "Old Value Snapshot", "type": "Memo", "maxLength": 4000 },
+        { "logicalName": "kzndot_newvaluesnapshot", "schemaName": "kzndot_NewValueSnapshot", "displayName": "New Value Snapshot", "type": "Memo", "maxLength": 4000 }
+      ]
+    }
+  ]
+}
