@@ -762,3 +762,115 @@ button {
   margin: 0.9rem 0 0;
   padding-left: 1.2rem;
 }
+
+/* ───────────────────────────────────────────
+   Job Title Picker Styles
+   ─────────────────────────────────────────── */
+
+.job-title-picker {
+  display: grid;
+  gap: 16px;
+}
+
+.letter-selector {
+  display: grid;
+  gap: 16px;
+}
+
+.letter-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 8px;
+}
+
+.letter-btn {
+  padding: 10px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.letter-btn:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+.letter-btn.active {
+  background: var(--green);
+  color: #ffffff;
+  border-color: var(--green);
+}
+
+.job-title-list-container {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.job-title-list-container > label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.job-title-dropdown {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  max-height: 300px;
+  cursor: pointer;
+}
+
+.job-title-dropdown:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(7, 166, 75, 0.1);
+}
+
+.job-title-dropdown option {
+  padding: 8px 12px;
+  background: #ffffff;
+  color: var(--text);
+}
+
+.selected-job-title {
+  padding: 12px 14px;
+  background: var(--green-soft);
+  border: 1px solid rgba(7, 166, 75, 0.3);
+  border-radius: 8px;
+  color: var(--green-dark);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.selected-job-title strong {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .letter-buttons {
+    grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+    gap: 6px;
+  }
+
+  .letter-btn {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+}
+
