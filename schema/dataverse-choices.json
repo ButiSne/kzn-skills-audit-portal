@@ -1,7 +1,7 @@
 {
   "globalChoices": [
     {
-      "schemaName": "crb_SubmissionStatus",
+      "schemaName": "kzndot_SubmissionStatus",
       "displayName": "Submission Status",
       "description": "Lifecycle of a questionnaire submission.",
       "options": [
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "schemaName": "crb_EmploymentType",
+      "schemaName": "kzndot_EmploymentType",
       "displayName": "Employment Type",
       "description": "Employment category captured in the questionnaire.",
       "options": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "schemaName": "crb_IDType",
+      "schemaName": "kzndot_IDType",
       "displayName": "ID Type",
       "description": "Accepted identity document type.",
       "options": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "schemaName": "crb_YesNoResponse",
+      "schemaName": "kzndot_YesNoResponse",
       "displayName": "Yes No Response",
       "description": "Reusable binary response set.",
       "options": [
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "schemaName": "crb_AgeCategory",
+      "schemaName": "kzndot_AgeCategory",
       "displayName": "Age Category",
       "description": "Age band used for reporting.",
       "options": [
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "schemaName": "crb_FieldOfStudy",
+      "schemaName": "kzndot_FieldOfStudy",
       "displayName": "Field of Study",
       "description": "Standard field of study classification.",
       "options": [
@@ -72,3 +72,4 @@
     }
   ]
 }
+``
