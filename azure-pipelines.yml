@@ -30,8 +30,7 @@ stages:
 
           - script: |
               npm cache clean --force
-              rm -rf node_modules package-lock.json
-              npm ci
+              npm install
             displayName: Install dependencies
 
           - script: npm run build
@@ -57,7 +56,7 @@ stages:
             inputs:
               app_location: '/'
               output_location: 'dist'
-              skip_app_build: true   # ✅ IMPORTANT: avoid vite build error
+              skip_app_build: true   # ✅ avoids vite permission error
               azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
 
   - stage: DeployPowerPlatform
