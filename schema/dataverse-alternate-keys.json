@@ -1,28 +1,28 @@
 {
   "alternateKeys": [
     {
-      "tableLogicalName": "crb_employeeprofile",
-      "schemaName": "ak_crb_employeeprofile_persalnumber",
+      "tableLogicalName": "kzndot_employeeprofile",
+      "schemaName": "ak_kzndot_employeeprofile_persalnumber",
       "displayName": "Employee Profile by PERSAL Number",
-      "keyAttributes": ["crb_persalnumber"]
+      "keyAttributes": ["kzndot_persalnumber"]
     },
     {
-      "tableLogicalName": "crb_skillsauditcycle",
-      "schemaName": "ak_crb_skillsauditcycle_name_year",
+      "tableLogicalName": "kzndot_skillsauditcycle",
+      "schemaName": "ak_kzndot_skillsauditcycle_name_year",
       "displayName": "Skills Audit Cycle by Name and Year",
-      "keyAttributes": ["crb_cyclename", "crb_cycleyear"]
+      "keyAttributes": ["kzndot_name", "kzndot_cycleyear"]
     },
     {
-      "tableLogicalName": "crb_skillsauditsubmission",
-      "schemaName": "ak_crb_submission_referencenumber",
+      "tableLogicalName": "kzndot_skillsauditsubmission",
+      "schemaName": "ak_kzndot_submission_referencenumber",
       "displayName": "Submission by Reference Number",
-      "keyAttributes": ["crb_submissionreferencenumber"]
+      "keyAttributes": ["kzndot_name"]
     },
     {
-      "tableLogicalName": "crb_referencevalue",
-      "schemaName": "ak_crb_referencevalue_type_code",
+      "tableLogicalName": "kzndot_referencevalue",
+      "schemaName": "ak_kzndot_referencevalue_type_code",
       "displayName": "Reference Value by Type and Code",
-      "keyAttributes": ["crb_referencetype", "crb_referencecode"]
+      "keyAttributes": ["kzndot_referencetype", "kzndot_referencecode"]
     }
   ]
 }
