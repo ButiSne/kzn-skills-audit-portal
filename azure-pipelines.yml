@@ -22,9 +22,10 @@ stages:
       - job: BuildFrontend
         displayName: Install and build
         steps:
-          - task: NodeTool@0
+          - task: NodeTool@1
             inputs:
               versionSpec: '20.x'
+              
           - script: npm ci
             displayName: Install dependencies
           - script: npm run build
