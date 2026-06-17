@@ -79,4 +79,4 @@ stages:
                   -ClientId '$(ClientId)' `
                   -ClientSecret '$(ClientSecret)' `
                   -DataverseUrl '$(DataverseUrl)'
-            pwsh: true
+              pwsh: true
