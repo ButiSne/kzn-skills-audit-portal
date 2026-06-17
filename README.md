@@ -11,15 +11,27 @@ This project contains the following deliverables for the KwaZulu-Natal Departmen
 
 ```bash
 npm install
+cp .env.example .env
 npm run dev
 ```
 
-The deployment script provisions the core baseline tables described in `schema/dataverse-schema.json`.
+The app expects the following environment values for Entra ID authentication:
+
+- `VITE_ENTRA_CLIENT_ID`
+- `VITE_ENTRA_TENANT_ID`
+- `VITE_ENTRA_REDIRECT_URI`
+
+## 2. Frontend authentication and deployment setup
+
+The SPA now uses the Microsoft identity platform configuration in [src/authConfig.js](src/authConfig.js) and wraps the application with the MSAL provider from [src/main.jsx](src/main.jsx).
+
+For CI/CD, the repository includes an Azure DevOps pipeline definition in [azure-pipelines.yml](azure-pipelines.yml) and a deployment guide in [docs/ado-powerplatform-deployment-plan.md](docs/ado-powerplatform-deployment-plan.md).
 
 ### Prerequisites
 
 - PowerShell 7+
 - a Dataverse environment URL
+- Azure DevOps pipeline variables for the Entra app and deployment targets
 
 ### Run the script
 
