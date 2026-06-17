@@ -22,28 +22,21 @@ stages:
       - job: BuildFrontend
         displayName: Install and build
         steps:
-<<<<<<< HEAD
-          - task: NodeTool@1
-            inputs:
-              versionSpec: '20.x'
-              
-          - script: npm ci
-            displayName: Install dependencies
-          - script: npm run build
-            displayName: Build production bundle
-=======
           - checkout: self
 
           - task: UseNode@1
             inputs:
-              version: '20.x'
+              version: '18.x'
 
           - script: |
-              npm ci
-              npm run build
-            displayName: Install dependencies and build
+              npm cache clean --force
+              rm -rf node_modules package-lock.json
+              npm install
+            displayName: Install dependencies
 
->>>>>>> 5c7a9ac (Fix dependency issues)
+          - script: npm run build
+            displayName: Build production bundle
+
           - task: PublishPipelineArtifact@1
             inputs:
               targetPath: dist
@@ -59,10 +52,7 @@ stages:
         steps:
           - download: current
             artifact: frontend-dist
-<<<<<<< HEAD
-=======
 
->>>>>>> 5c7a9ac (Fix dependency issues)
           - task: AzureStaticWebApp@0
             inputs:
               app_location: '/'
@@ -77,15 +67,12 @@ stages:
       - job: DeployDataverse
         displayName: Provision Dataverse schema and relationships
         steps:
-<<<<<<< HEAD
-=======
           - checkout: self
 
           - task: UseNode@1
             inputs:
-              version: '20.x'
+              version: '18.x'
 
->>>>>>> 5c7a9ac (Fix dependency issues)
           - task: PowerShell@2
             inputs:
               targetType: inline
