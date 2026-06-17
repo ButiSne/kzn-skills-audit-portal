@@ -17,52 +17,21 @@ variables:
 
 stages:
 # =========================
-# BUILD STAGE
-# =========================
-  - stage: Build
-    displayName: Build frontend
-    jobs:
-      - job: BuildFrontend
-        displayName: Install and build
-        steps:
-          - checkout: self
-
-          - task: UseNode@1
-            inputs:
-              version: '18.x'
-
-          - script: |
-              npm cache clean --force
-              npm install
-            displayName: Install dependencies
-
-          - script: npm run build
-            displayName: Build production bundle
-
-          - task: PublishPipelineArtifact@1
-            inputs:
-              targetPath: dist
-              artifact: frontend-dist
-
-# =========================
-# DEPLOY FRONTEND (FIXED ✅)
+# DEPLOY FRONTEND ONLY ✅
 # =========================
   - stage: DeployFrontend
     displayName: Deploy frontend
-    dependsOn: Build
-    condition: succeeded()
     jobs:
       - job: DeployStaticWebApp
         displayName: Deploy to Azure Static Web Apps
         steps:
-          - download: current
-            artifact: frontend-dist
+          - checkout: self
 
           - task: AzureStaticWebApp@0
             inputs:
-              app_location: 'dist'        # ✅ CORRECT (use built files)
-              output_location: ''         # ✅ EMPTY (no Azure build)
-              skip_app_build: true        # ✅ DO NOT BUILD AGAIN
+              app_location: 'dist'
+              output_location: ''
+              skip_app_build: true
               azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
 
 # =========================
@@ -70,17 +39,11 @@ stages:
 # =========================
   - stage: DeployPowerPlatform
     displayName: Deploy Power Platform assets
-    dependsOn: Build
-    condition: succeeded()
     jobs:
       - job: DeployDataverse
         displayName: Provision Dataverse schema and relationships
         steps:
           - checkout: self
-
-          - task: UseNode@1
-            inputs:
-              version: '18.x'
 
           - task: PowerShell@2
             inputs:
