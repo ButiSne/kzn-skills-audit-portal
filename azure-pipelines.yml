@@ -45,7 +45,7 @@ stages:
   - stage: DeployFrontend
     displayName: Deploy frontend
     dependsOn: Build
-    condition: and(succeeded(), eq(variables['DeployFrontend'], 'true'))
+    condition: succeeded()
     jobs:
       - job: DeployStaticWebApp
         displayName: Deploy to Azure Static Web Apps
@@ -62,7 +62,7 @@ stages:
   - stage: DeployPowerPlatform
     displayName: Deploy Power Platform assets
     dependsOn: Build
-    condition: and(succeeded(), eq(variables['DeployPowerPlatform'], 'true'))
+    condition: succeeded()
     jobs:
       - job: DeployDataverse
         displayName: Provision Dataverse schema and relationships
