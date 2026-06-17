@@ -16,6 +16,9 @@ variables:
   - group: kzn-skills-audit-portal
 
 stages:
+# =========================
+# BUILD STAGE
+# =========================
   - stage: Build
     displayName: Build frontend
     jobs:
@@ -41,6 +44,9 @@ stages:
               targetPath: dist
               artifact: frontend-dist
 
+# =========================
+# DEPLOY FRONTEND (FIXED ✅)
+# =========================
   - stage: DeployFrontend
     displayName: Deploy frontend
     dependsOn: Build
@@ -54,11 +60,14 @@ stages:
 
           - task: AzureStaticWebApp@0
             inputs:
-              app_location: '/'
-              output_location: 'dist'
-              skip_app_build: true   # ✅ avoids vite permission error
+              app_location: 'dist'        # ✅ CORRECT (use built files)
+              output_location: ''         # ✅ EMPTY (no Azure build)
+              skip_app_build: true        # ✅ DO NOT BUILD AGAIN
               azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
 
+# =========================
+# DEPLOY POWER PLATFORM
+# =========================
   - stage: DeployPowerPlatform
     displayName: Deploy Power Platform assets
     dependsOn: Build
