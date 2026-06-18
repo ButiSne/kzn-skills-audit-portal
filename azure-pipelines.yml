@@ -18,31 +18,63 @@ variables:
 stages:
 
 # =========================
-# DEPLOY FRONTEND (NO BUILD ✅)
+# BUILD FRONTEND ✅
 # =========================
-  - stage: DeployFrontend
-    displayName: Deploy frontend
+  - stage: Build
+    displayName: Build frontend
     jobs:
-      - job: DeployStaticWebApp
-        displayName: Deploy to Azure Static Web Apps
+      - job: BuildFrontend
         steps:
           - checkout: self
 
-          - task: AzureStaticWebApp@0
+          - task: UseNode@1
             inputs:
-              app_location: 'dist'       # ✅ now committed in repo
-              output_location: ''        # ✅ no build
-              skip_app_build: true       # ✅ CRITICAL
-              azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
+              version: '18.x'
+
+          - script: |
+              npm install --legacy-peer-deps
+            displayName: Install dependencies
+
+          - script: npm run build
+            displayName: Build app
+
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: dist
+              artifact: frontend-dist
+
 
 # =========================
-# DEPLOY POWER PLATFORM
+# DEPLOY FRONTEND ✅
+# =========================
+  - stage: DeployFrontend
+    dependsOn: Build
+    jobs:
+      - job: DeployStaticWebApp
+        steps:
+          - download: current
+            artifact: frontend-dist
+
+          - script: |
+              mkdir app
+              cp -r $(Pipeline.Workspace)/frontend-dist/* app/
+            displayName: Prepare app
+
+          - task: AzureStaticWebApp@0
+            inputs:
+              app_location: 'app'
+              output_location: ''
+              skip_app_build: true
+              azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
+
+
+# =========================
+# POWER PLATFORM ✅
 # =========================
   - stage: DeployPowerPlatform
-    displayName: Deploy Power Platform assets
+    dependsOn: Build
     jobs:
       - job: DeployDataverse
-        displayName: Provision Dataverse schema and relationships
         steps:
           - checkout: self
 
@@ -55,16 +87,3 @@ stages:
                   -ClientId '$(ClientId)' `
                   -ClientSecret '$(ClientSecret)' `
                   -DataverseUrl '$(DataverseUrl)'
-
-                pwsh ./scripts/deploy-dataverse-relationships.ps1 `
-                  -TenantId '$(TenantId)' `
-                  -ClientId '$(ClientId)' `
-                  -ClientSecret '$(ClientSecret)' `
-                  -DataverseUrl '$(DataverseUrl)'
-
-                pwsh ./scripts/deploy-dataverse-keys-and-choices.ps1 `
-                  -TenantId '$(TenantId)' `
-                  -ClientId '$(ClientId)' `
-                  -ClientSecret '$(ClientSecret)' `
-                  -DataverseUrl '$(DataverseUrl)'
-              pwsh: true
