@@ -16,67 +16,65 @@ variables:
   - group: kzn-skills-audit-portal
 
 stages:
-
-# =========================
-# BUILD FRONTEND ✅
-# =========================
   - stage: Build
     displayName: Build frontend
     jobs:
       - job: BuildFrontend
+        displayName: Install and build
         steps:
           - checkout: self
 
           - task: UseNode@1
             inputs:
-              version: '18.x'
+              version: '20.x'
 
-          - script: |
-              npm install --legacy-peer-deps
+          - task: Npm@1
+            inputs:
+              command: 'ci'
             displayName: Install dependencies
 
-          - script: npm run build
-            displayName: Build app
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              customCommand: 'run build'
+            displayName: Build frontend bundle
 
           - task: PublishPipelineArtifact@1
             inputs:
               targetPath: dist
               artifact: frontend-dist
 
-
-# =========================
-# DEPLOY FRONTEND ✅
-# =========================
   - stage: DeployFrontend
+    displayName: Deploy frontend
     dependsOn: Build
+    condition: succeeded()
     jobs:
       - job: DeployStaticWebApp
+        displayName: Deploy to Azure Static Web Apps
         steps:
           - download: current
             artifact: frontend-dist
 
-          - script: |
-              mkdir app
-              cp -r $(Pipeline.Workspace)/frontend-dist/* app/
-            displayName: Prepare app
-
           - task: AzureStaticWebApp@0
             inputs:
-              app_location: 'app'
-              output_location: ''
+              app_location: '/'
+              output_location: 'dist'
               skip_app_build: true
               azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'
 
-
-# =========================
-# POWER PLATFORM ✅
-# =========================
   - stage: DeployPowerPlatform
+    displayName: Deploy Power Platform assets
     dependsOn: Build
+    condition: succeeded()
     jobs:
       - job: DeployDataverse
+        displayName: Provision Dataverse schema and relationships
         steps:
           - checkout: self
+
+          - task: UseNode@1
+            inputs:
+              version: '20.x'
 
           - task: PowerShell@2
             inputs:
@@ -87,3 +85,16 @@ stages:
                   -ClientId '$(ClientId)' `
                   -ClientSecret '$(ClientSecret)' `
                   -DataverseUrl '$(DataverseUrl)'
+
+                pwsh ./scripts/deploy-dataverse-relationships.ps1 `
+                  -TenantId '$(TenantId)' `
+                  -ClientId '$(ClientId)' `
+                  -ClientSecret '$(ClientSecret)' `
+                  -DataverseUrl '$(DataverseUrl)'
+
+                pwsh ./scripts/deploy-dataverse-keys-and-choices.ps1 `
+                  -TenantId '$(TenantId)' `
+                  -ClientId '$(ClientId)' `
+                  -ClientSecret '$(ClientSecret)' `
+                  -DataverseUrl '$(DataverseUrl)'
+              pwsh: true
